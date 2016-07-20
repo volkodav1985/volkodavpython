@@ -13,17 +13,18 @@ class ContactHelper:
 
 
 
+
     def  modify(self, contact):
-            wd = self.app.wd
-            wd.find_element_by_name("selected[]").click()
-            wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[7]/td[8]/a/img").click()
-            wd.find_element_by_name("firstname").click()
-            wd.find_element_by_name("firstname").clear()
-            wd.find_element_by_name("firstname").send_keys(contact.name)
-            wd.find_element_by_name("lastname").click()
-            wd.find_element_by_name("lastname").clear()
-            wd.find_element_by_name("lastname").send_keys(contact.surname)
-            wd.find_element_by_name("update").click()
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[7]/td[8]/a/img").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.name)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.surname)
+        wd.find_element_by_name("update").click()
 
 
 
