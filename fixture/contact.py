@@ -7,6 +7,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
@@ -14,8 +15,9 @@ class ContactHelper:
 
 
 
-    def  modify(self, contact):
+    def  edit(self, contact):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[7]/td[8]/a/img").click()
         wd.find_element_by_name("firstname").click()
@@ -61,3 +63,4 @@ class ContactHelper:
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys(contact.secondaddress)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
