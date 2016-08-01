@@ -14,7 +14,9 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
 
-
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
 
 
     def  edit(self, contact):
@@ -29,6 +31,7 @@ class ContactHelper:
         wd.find_element_by_name("lastname").clear()
         wd.find_element_by_name("lastname").send_keys(contact.surname)
         wd.find_element_by_name("update").click()
+
 
 
 
@@ -66,12 +69,21 @@ class ContactHelper:
         wd.find_element_by_name("address2").send_keys(contact.secondaddress)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+    def count(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))
+
+
 
     def get_contact_list(self):
         wd = self.app.wd
         contacts=[]
-        for element in wd.find_element_by_css_selector("td.id"):
-            text=element.text
-            id=element.find_element_by_name("selected[]").get_atrribute("value")
-            contacts.append(Contact(name=text,id=id))
+        for cell in wd.find_elements_by_tag_name("td"):
+            text=cell.text
+            row= cell.find_elements_by_name("First name")
+            row = cell.find_elements_by_name("Last name")
+            id = row.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(name=text, surname=text, id=id))
         return contacts
+
+
