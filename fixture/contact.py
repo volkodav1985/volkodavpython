@@ -78,12 +78,11 @@ class ContactHelper:
     def get_contact_list(self):
         wd = self.app.wd
         contacts=[]
-        for cell in wd.find_elements_by_tag_name("td"):
-            text=cell.text
-            row= cell.find_elements_by_name("First name")
-            row = cell.find_elements_by_name("Last name")
-            id = row.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(name=text, surname=text, id=id))
+        for row in wd.find_elements_by_name("entry"):
+            cells = row.find_elements_by_tag_name("td")
+            surname=cells[1].text
+            name=cells[2].text
+            contacts.append(Contact(name=cells[2], surname=cells[1]))
         return contacts
 
 

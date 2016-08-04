@@ -6,7 +6,8 @@ def test_add_new_contact(app):
     app.contact.createcont(Contact(name="Alex", surname="Lavre", job="Semant", mainaddress="22, Fearless.ave, Lynn, MA, 01902",
     phone="857-251-5655u", year="1885",secondaddress="85, Shirley ave, Revere, MA, 02151"))
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts)+ 1 == len(new_contacts)
+
+
 
 
 
